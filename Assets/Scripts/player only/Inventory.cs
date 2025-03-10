@@ -1,10 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum ItemType
+{
+    Empty,
+    Key,
+    HealingPotion,
+}
+
 public class Inventory : MonoBehaviour
 {
     public Image[] slots; // Array to hold the inventory slots
-    [SerializeField] private string[] slotName;
+    public ItemType[] itemType;
     public bool[] slotsEmpty;
     public int selectedSlotIndex = 0; // Tracks the currently selected slot index
     //public bool slotOccupied;
@@ -20,7 +27,7 @@ public class Inventory : MonoBehaviour
             if (slots[i] != null)
             {
                 slots[i].color = Color.clear; // Clear the slots initially
-                slotName[i] = "Empty";
+                itemType[i] = global::ItemType.Empty;
                 slotsEmpty[i] = true;
             }
             else
@@ -105,7 +112,6 @@ public class Inventory : MonoBehaviour
         if (slots[selectedSlotIndex] != null && slotsEmpty[selectedSlotIndex] == true)
         {
             slots[selectedSlotIndex].sprite = itemSprite;
-            slotName[selectedSlotIndex] = itemSprite.name;
             slots[selectedSlotIndex].color = Color.white; // Set the slot to visible with the item image
             slotsEmpty[selectedSlotIndex] = false;
             Debug.Log("Item added to " + slots[selectedSlotIndex].name);
