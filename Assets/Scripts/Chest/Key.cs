@@ -11,7 +11,7 @@ public class Key : MonoBehaviour
             Inventory playerInventoryUI = other.GetComponentInChildren<Inventory>();
             PlayerInventory pInv = other.GetComponent<PlayerInventory>();
 
-            if (playerInventoryUI != null)
+            if (playerInventoryUI != null && playerInventoryUI.slotsEmpty[playerInventoryUI.selectedSlotIndex] == true)
             {
                 // Add the key sprite to the currently selected inventory slot
                 playerInventoryUI.AddItem(keySprite);
