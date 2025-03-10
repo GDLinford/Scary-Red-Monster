@@ -14,11 +14,11 @@ public class HealingPotion : MonoBehaviour
 
         if (playerInventoryUI != null)
         {
-            // Add the key sprite to the currently selected inventory slot
+            // Add the potion sprite to the currently selected inventory slot
             playerInventoryUI.AddItem(HealingPotionSprite);
             pInv.AddPotion();
 
-            // Destroy the key game object after collection
+            // Destroy the Potion game object after collection
             Destroy(gameObject);
         }
         else

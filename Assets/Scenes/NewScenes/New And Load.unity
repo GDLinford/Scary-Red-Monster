@@ -765,8 +765,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 814ac1dfc8d639f4083453c80641ef97, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 060483324855c74419fb14a8184d0a13, type: 3}
-  m_Resource: {fileID: 8300000, guid: 060483324855c74419fb14a8184d0a13, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d57d2ba0ae3ea674cbf09c051c497b4d, type: 3}
+  m_Resource: {fileID: 8300000, guid: d57d2ba0ae3ea674cbf09c051c497b4d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2184,8 +2184,8 @@ GameObject:
   - component: {fileID: 1815979048}
   - component: {fileID: 1815979047}
   - component: {fileID: 1815979046}
-  - component: {fileID: 1815979049}
   - component: {fileID: 1815979050}
+  - component: {fileID: 1815979051}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -2256,9 +2256,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1815979049}
-        m_TargetAssemblyTypeName: BackButtonChapter1, Assembly-CSharp
-        m_MethodName: ChapterSelect
+      - m_Target: {fileID: 1815979051}
+        m_TargetAssemblyTypeName: BackButton, Assembly-CSharp
+        m_MethodName: GoBackToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2306,18 +2306,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1815979044}
   m_CullTransparentMesh: 1
---- !u!114 &1815979049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1815979044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c322439a1102b348b483f2b5a4c6476, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1815979050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2363,6 +2351,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1815979051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815979044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d8585581bb08c449945ffdf0b45193b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1849230231 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2107226667392903115, guid: 39f4d5892834df440ae2ab4a6d3172fb, type: 3}
