@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1945164595950570477}
   - component: {fileID: 463617172199163658}
   - component: {fileID: 8233831109525426114}
+  - component: {fileID: 2641047330505733778}
   m_Layer: 0
   m_Name: SpiderToast
   m_TagString: Untagged
@@ -220,6 +221,18 @@ MonoBehaviour:
   - {fileID: 3253708270520441951}
   needsToFlip: 1
   moveSpeed: 1
+--- !u!114 &2641047330505733778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185001938276144149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f9a8d0650ce6ae40841be5d950d2a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4035005231389279052
 GameObject:
   m_ObjectHideFlags: 0
