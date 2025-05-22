@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isCrouching;
     private bool isRunning;
     private float moveDirection; // For capturing horizontal input
-    PlayerInventory inventory;
+    PickupManager puManager;
     public int healAmount = 50;
     void Start()
     {
@@ -32,21 +32,19 @@ public class PlayerMovement : MonoBehaviour
         playerStamina = GetComponent<PlayerStamina>();
         hPotScript = FindAnyObjectByType<HealingPotion>();
         playerHealth = GetComponent<PlayerHealth>();
+        puManager = FindAnyObjectByType<PickupManager>();
         // Check for component assignments
         if (rb == null) Debug.LogError("Rigidbody2D component not found on " + gameObject.name);
         if (animator == null) Debug.LogError("Animator component not found on " + gameObject.name);
         if (playerStamina == null) Debug.LogError("PlayerStamina component not found on " + gameObject.name);
         if (groundCheck == null) Debug.LogError("GroundCheck Transform not assigned in the Inspector on " + gameObject.name);
-        inventory = GetComponent<PlayerInventory>();
+
     }
 
     void Update()
     {
         HandleInput();
         UpdateAnimations();
-
-        Debug.Log(inventory.potCount);
-
         HealPlayer();
 
     }
@@ -163,9 +161,9 @@ public class PlayerMovement : MonoBehaviour
     {
         // Click the Healing Potion on any Slot
         //can only use potions if we have more than 0
-        if (Input.GetMouseButton(0) && inventory.potCount > 0 && playerHealth.currentHealth < playerHealth.maxHealth)
+        if (Input.GetKeyDown(KeyCode.H) && puManager.hPotCount > 0 && playerHealth.currentHealth < playerHealth.maxHealth)
         {
-            inventory.UsePotion();
+            puManager.UsePotion();
             if (playerHealth != null)
             {
                 playerHealth.Heal(healAmount);

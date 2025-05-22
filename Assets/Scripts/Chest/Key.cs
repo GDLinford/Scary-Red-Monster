@@ -1,30 +1,34 @@
+using System.Collections;
 using UnityEngine;
 
 public class Key : MonoBehaviour
 {
-    public Sprite keySprite; // The sprite representing the key
+    private bool isCollected = false;
+    private AudioSource auSource;
+    PickupManager puManager;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void Start()
     {
-        if (other.CompareTag("Player"))
-        {
-            Inventory playerInventoryUI = other.GetComponentInChildren<Inventory>();
-            PlayerInventory pInv = other.GetComponent<PlayerInventory>();
+        auSource = GetComponent<AudioSource>();
+        puManager = FindAnyObjectByType<PickupManager>();
+    }
 
-            if (playerInventoryUI != null)
-            {
-                // Add the key sprite to the currently selected inventory slot
-                playerInventoryUI.AddItem(keySprite);
-                Debug.Log("Key added to inventory UI.");
-                pInv.AddKey();
-                // Destroy the key game object after collection
-                Destroy(gameObject);
-                Debug.Log("Key collected and destroyed.");
-            }
-            else
-            {
-                Debug.Log("Player's inventory UI not found.");
-            }
+    private void OnTriggerEnter2D(Collider2D collison)
+    {
+        if (!isCollected && collison.CompareTag("Player")) 
+        { 
+            isCollected = true;
+            puManager.AddKeys();
+            auSource.Play();
+            StartCoroutine(DestroyAfterSound());
+            
         }
+        
+    }
+
+    private IEnumerator DestroyAfterSound()
+    {
+        yield return new WaitForSeconds(auSource.clip.length);
+        Destroy(gameObject);
     }
 }

@@ -1,30 +1,38 @@
+using System.Collections;
 using UnityEngine;
 
 public class HealingPotion : MonoBehaviour
 {
-    public Sprite HealingPotionSprite; // Amount of health the potion restores
+
+    private bool isCollected = false;
     // Added so Each Potion Pick can be Worth a diffrent amount
-    public int potionPickupAmount;
-  
-    
+    private AudioSource audSource;
+    PickupManager pickupManager;
+
+    private void Start()
+    {
+        pickupManager = FindAnyObjectByType<PickupManager>();
+        audSource = GetComponent<AudioSource>();
+    }
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Inventory playerInventoryUI = collision.GetComponentInChildren<Inventory>();
-        PlayerInventory pInv = collision.GetComponent<PlayerInventory>();
 
-        if (playerInventoryUI != null)
+        if (!isCollected && collision.CompareTag("Player"))
         {
             // Add the potion sprite to the currently selected inventory slot
-            playerInventoryUI.AddItem(HealingPotionSprite);
-            pInv.AddPotion();
-
+            pickupManager.AddPotions();
+            audSource.Play();
             // Destroy the Potion game object after collection
-            Destroy(gameObject);
+            StartCoroutine(DestroyAfterSound());
         }
-        else
-        {
-            Debug.Log("Player's inventory UI not found.");
-        }
+    }
+
+    private IEnumerator DestroyAfterSound()
+    {
+        yield return new WaitForSeconds(audSource.clip.length);
+        Destroy(gameObject);
     }
 }
 

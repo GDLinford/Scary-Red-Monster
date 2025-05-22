@@ -11,15 +11,15 @@ public class Chest : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
+            PickupManager puManager = FindAnyObjectByType<PickupManager>();
 
-            if (playerInventory != null && playerInventory.HasKey() && !isOpened)
+            if (puManager != null && puManager.KeyCount > 0 && !isOpened)
             {
                 // Use the key to open the chest
-                playerInventory.UseKey(); // This will remove the key and reduce the key count to 0
+                puManager.UseKey(); // This will remove the key and reduce the key count to 0
                 OpenChest();
             }
-            else if (!playerInventory.HasKey())
+            else 
             {
                 Debug.Log("Chest is locked. You need a key to open it.");
             }
